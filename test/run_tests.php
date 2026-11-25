@@ -52,7 +52,14 @@ $pdo = new PDO('sqlite::memory:', null, null, [
 ]);
 $pdo->exec('PRAGMA foreign_keys = ON');
 db_usar($pdo);
-$schema = is_file(dirname(WEB) . '/db/schema.sql') ? dirname(WEB) . '/db/schema.sql' : dirname(__DIR__) . '/app/db/schema.sql';
+// En el repo: app/db/schema.sql. Desplegado: la copia que deja deploy.py en app/cli/schema.sql.
+$schema = APP . '/cli/schema.sql';
+foreach ([dirname(WEB) . '/db/schema.sql', dirname(__DIR__) . '/app/db/schema.sql'] as $c) {
+    if (is_file($c)) {
+        $schema = $c;
+        break;
+    }
+}
 db_ejecutar_sql((string)file_get_contents($schema));
 
 // ---- Clave de firma de prueba ----
