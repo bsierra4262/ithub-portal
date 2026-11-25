@@ -4,6 +4,13 @@ Todos los cambios notables de este proyecto se documentan acá.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/)
 y el versionado, [SemVer](https://semver.org/lang/es/).
 
+## 2026-11-25 · 0.2.1 · Salir vuelve a ITHub
+
+- Salir desde cualquier app conectada cierra la sesión única y deja siempre en el login de
+  ITHub con el aviso «Cerraste sesión en ITHub y en todas las aplicaciones». Antes volvía al
+  login de la app, que reenviaba en el acto a ITHub con «Para entrar a <app>…» y, al ingresar,
+  llevaba a esa app en vez del panel.
+
 ## 2026-11-25 · 0.2.0 · Rediseño y pantalla de Permisos
 
 - **Rediseño completo** con la estructura del Portal de RRHH: barra lateral violeta con
