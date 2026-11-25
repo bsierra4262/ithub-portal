@@ -39,7 +39,7 @@ if ($yo !== null && str_contains($pedido['prompt'], 'login')) {
     $q['prompt'] = trim(str_replace('login', '', $pedido['prompt']));
     $_SESSION['oidc_pendiente'] = http_build_query($q);
     $_SESSION['oidc_pendiente_app'] = $app['nombre'];
-    redirigir(url('login'));
+    redirigir(url('login', ['app' => $app['clave']]));
 }
 
 if ($yo === null) {
@@ -50,7 +50,7 @@ if ($yo === null) {
     unset($q['r']);
     $_SESSION['oidc_pendiente'] = http_build_query($q);
     $_SESSION['oidc_pendiente_app'] = $app['nombre'];
-    redirigir(url('login'));
+    redirigir(url('login', ['app' => $app['clave']]));
 }
 
 $rol = rol_en_app($yo, $app);
