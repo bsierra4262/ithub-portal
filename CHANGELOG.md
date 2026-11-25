@@ -4,6 +4,21 @@ Todos los cambios notables de este proyecto se documentan acá.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/)
 y el versionado, [SemVer](https://semver.org/lang/es/).
 
+## 2026-11-25 · 0.2.0 · Rediseño y pantalla de Permisos
+
+- **Rediseño completo** con la estructura del Portal de RRHH: barra lateral violeta con
+  secciones (General, Administración, Configuración), barra superior con el título, banner de
+  bienvenida con el resumen del día y tarjetas de aplicaciones dentro de una caja. Login partido
+  igual al de RRHH. Rótulos con la barrita lima de la web institucional.
+- **Saira servida desde el portal** (`assets/fonts`): la CSP ya no permite fuentes de Google.
+- **Permisos**: matriz personas × aplicaciones editable en una sola pantalla, con la
+  explicación de los dos niveles de rol, búsqueda, inactivos opcionales, marca de celdas
+  cambiadas, contador de cambios sin guardar y aviso al salir sin guardar. Respeta las mismas
+  reglas que la edición de un usuario (un admin no toca a un super admin) y quitar una app
+  cierra la sesión de esa persona en ella.
+- **Ver como**: el panel tal como lo ve otra persona, de sólo lectura.
+- **Usuarios** muestra los íconos de las aplicaciones que ve cada persona.
+
 ## 2026-11-25 · 0.1.0 · Portal y proveedor de identidad
 
 Primera versión de ITHub como portal único de Intellihelp (etapa 1).

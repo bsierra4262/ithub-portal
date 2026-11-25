@@ -37,6 +37,13 @@ $usuarios = q('SELECT u.*,
                FROM usuarios u WHERE ' . implode(' AND ', $where) . '
                ORDER BY u.activo DESC, u.nombre', $p);
 
+// Íconos de las apps que ve cada persona (lo mismo que le aparece en el panel).
+$appsActivas = array_values(array_filter(apps_todas(), static fn(array $a): bool => $a['estado'] !== 'proximamente'));
+foreach ($usuarios as &$u) {
+    $u['apps_lista'] = array_values(array_filter($appsActivas, static fn(array $a): bool => rol_en_app($u, $a) !== null));
+}
+unset($u);
+
 vista('usuarios', [
     'titulo'   => 'Usuarios',
     'yo'       => $yo,

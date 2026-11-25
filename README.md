@@ -56,12 +56,13 @@ Sin contraseñas: el acceso es sólo con Google Workspace.
 
 ## La aplicación por dentro
 
-Identidad visual compartida con el CRM y el Portal de RRHH: tipografía Saira y paleta
-`#663399` · `#9f88b1` · `#fff6ff` · `#fffade`, con colores planos y sin degradados. ITHub es
-la puerta de entrada a esas aplicaciones y se ve como parte de la misma familia.
+Misma estructura que el Portal de RRHH —barra lateral violeta, banner de bienvenida y tarjetas
+blancas sobre lila claro— con los detalles de la web institucional intellihelp.tech: rótulos en
+mayúsculas con la barrita lima y el logo iTH. Tipografía Saira (servida desde el propio portal)
+y paleta `#663399` · `#9f88b1` · `#fff6ff` · `#fffade` · `#98cc32`, con colores planos.
 
 > Las capturas son de una instalación local con el mismo código y el catálogo real de
-> aplicaciones; los únicos usuarios son los dos super admin.
+> aplicaciones. Las personas que no son super admin son de prueba.
 
 <p align="center"><img src="docs/screenshots/login.png" alt="Pantalla de ingreso" width="100%"></p>
 
@@ -72,7 +73,21 @@ buscador (atajo <kbd>/</kbd>). Los administradores ven además el resumen del d�
 
 <p align="center"><img src="docs/screenshots/panel.png" alt="Panel de ITHub" width="100%"></p>
 
-### Usuarios y permisos por aplicación
+### Permisos
+
+Toda la configuración de accesos en una pantalla: arriba, los dos niveles de rol (en ITHub y en
+cada aplicación); abajo, la matriz personas × aplicaciones, donde cada celda es el rol de la
+persona en esa app. Las celdas cambiadas se marcan y el pie cuenta los cambios sin guardar.
+
+<p align="center"><img src="docs/screenshots/permisos.png" alt="Matriz de permisos" width="100%"></p>
+
+**Ver como.** Desde Permisos o Usuarios, el ojo muestra el panel tal como lo ve esa persona:
+sólo las aplicaciones que tiene habilitadas. Es de sólo lectura y no abre ninguna sesión a su
+nombre. En la captura, Laura no tiene Facturación y la tarjeta no aparece.
+
+<p align="center"><img src="docs/screenshots/vista-previa.png" alt="Panel visto como otra persona" width="100%"></p>
+
+### Usuarios
 
 <p align="center"><img src="docs/screenshots/usuarios.png" alt="Usuarios" width="100%"></p>
 <p align="center"><img src="docs/screenshots/usuario-form.png" alt="Edición de usuario con la matriz de permisos" width="100%"></p>

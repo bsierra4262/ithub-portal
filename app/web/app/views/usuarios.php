@@ -3,10 +3,11 @@
 ?>
 <div class="cab">
   <div>
+    <span class="eyebrow">Administración</span>
     <h1>Usuarios</h1>
-    <p class="cab-sub">Quién entra a ITHub, con qué rol y a cuántas aplicaciones.</p>
+    <p class="cab-sub">Quién entra a ITHub, con qué rol y qué aplicaciones ve en su panel. Para asignar aplicaciones a varias personas a la vez usá <a href="<?= e(url('permisos')) ?>">Permisos</a>.</p>
   </div>
-  <a class="btn" href="<?= e(url('usuario-form')) ?>"><?= icono('mas') ?> Nuevo usuario</a>
+  <a class="btn btn-primary" href="<?= e(url('usuario-form')) ?>"><?= icono('mas') ?> Nuevo usuario</a>
 </div>
 
 <form class="filtros" method="get" action="<?= e(url('usuarios')) ?>">
@@ -54,11 +55,19 @@
       </td>
       <td data-th="Rol"><span class="badge badge-<?= e($u['rol']) ?>"><?= e(ROLES_PORTAL[$u['rol']] ?? $u['rol']) ?></span></td>
       <td data-th="Aplicaciones">
-        <?php if ($u['rol'] === 'superadmin'): ?>Todas<?php else: ?><?= (int)$u['apps'] ?> de <?= $total_apps ?><?php endif; ?>
+        <?php if (!$u['apps_lista']): ?>
+          <span class="muted">Ninguna</span>
+        <?php else: ?>
+          <span class="apps-mini" title="<?= e(implode(', ', array_column($u['apps_lista'], 'nombre'))) ?>">
+            <?php foreach (array_slice($u['apps_lista'], 0, 6) as $a): ?><span class="mini-ico c-<?= e($a['color']) ?>"><?= icono($a['icono']) ?></span><?php endforeach; ?>
+            <span class="muted"><?= count($u['apps_lista']) ?> de <?= $total_apps ?></span>
+          </span>
+        <?php endif; ?>
       </td>
       <td data-th="Último ingreso"><span><?= e(hace($u['ultimo_acceso'])) ?><?php if ((int)$u['sesiones'] > 0): ?> <span class="punto-on" title="Con sesión abierta"></span><?php endif; ?></span></td>
       <td data-th="Estado"><?= (int)$u['activo'] === 1 ? '<span class="badge badge-ok">Activo</span>' : '<span class="badge badge-suave">Inactivo</span>' ?></td>
       <td class="acciones">
+        <a class="icon-btn" href="<?= e(url('vista-previa', ['usuario' => $u['id']])) ?>" title="Ver el panel como <?= e($u['nombre']) ?>" aria-label="Ver el panel como <?= e($u['nombre']) ?>"><?= icono('ojo') ?></a>
         <?php if ($editable): ?><a class="btn btn-sec btn-sm" href="<?= e(url('usuario-form', ['id' => $u['id']])) ?>"><?= icono('editar') ?> Editar</a><?php endif; ?>
       </td>
     </tr>

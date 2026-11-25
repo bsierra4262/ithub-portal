@@ -1,14 +1,17 @@
 /* ============================================================
    ITHub — comportamiento de la interfaz (sin dependencias).
 
-   · Menú del celular (botón [data-nav-toggle] → .nav-abierto en el body).
-   · Panel: filtro por categoría (.cat) y buscador ([data-filtro-apps]),
-     combinados.
+   · Menú del celular (botón [data-nav-toggle] → .nav-open en el body; el
+     velo [data-nav-cerrar] y Escape lo cierran).
+   · Panel: filtro por categoría ([data-categoria]) y buscador
+     ([data-filtro-apps]), combinados.
    · Confirmaciones: un <form data-confirmar="..."> pregunta antes de enviar.
    · Copiar el secreto de una app ([data-copiar] → [data-copiable]).
    · Matriz de permisos: resalta la fila con acceso y cambia la ayuda según
      el rol del portal elegido.
-   · Cierra el menú de usuario al hacer clic afuera o con Escape.
+   · Permisos: cada celda de la matriz se pinta según el rol elegido, las
+     cambiadas se marcan, el pie cuenta los cambios sin guardar y avisa si se
+     sale de la página sin guardarlos.
    La política de seguridad no permite JavaScript en línea: todo va acá.
    ============================================================ */
 (function () {
@@ -16,29 +19,27 @@
 
   var body = document.body;
 
-  // ---- Menú del celular ----
+  // ---- Menú del celular: la barra lateral entra desde la izquierda ----
   var toggle = document.querySelector('[data-nav-toggle]');
+  var cerrarNav = function () {
+    body.classList.remove('nav-open');
+    if (toggle) { toggle.setAttribute('aria-expanded', 'false'); }
+  };
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var abierto = body.classList.toggle('nav-abierto');
+      var abierto = body.classList.toggle('nav-open');
       toggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
     });
-  }
-
-  // ---- Menú de usuario: cerrar al hacer clic afuera o con Escape ----
-  var menu = document.querySelector('.usuario-menu');
-  if (menu) {
-    document.addEventListener('click', function (ev) {
-      if (menu.open && !menu.contains(ev.target)) { menu.open = false; }
-    });
+    var velo = document.querySelector('[data-nav-cerrar]');
+    if (velo) { velo.addEventListener('click', cerrarNav); }
     document.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+      if (ev.key === 'Escape' && body.classList.contains('nav-open')) { cerrarNav(); toggle.focus(); }
     });
   }
 
   // ---- Panel: categorías + buscador (se combinan) ----
   var filtro = document.querySelector('[data-filtro-apps]');
-  var cats = document.querySelectorAll('.cat[data-categoria]');
+  var cats = document.querySelectorAll('[data-categoria]');
   var tarjetas = document.querySelectorAll('.tarjeta[data-app]');
   if (tarjetas.length) {
     var sinResultados = document.querySelector('[data-sin-resultados]');
@@ -62,7 +63,7 @@
         categoria = b.getAttribute('data-categoria');
         cats.forEach(function (o) {
           var activo = o === b;
-          o.classList.toggle('activo', activo);
+          o.classList.toggle('on', activo);
           o.setAttribute('aria-pressed', activo ? 'true' : 'false');
         });
         aplicar();
@@ -112,6 +113,37 @@
       var b = document.querySelector('[data-nota-comun]');
       if (a) { a.hidden = !esSuper; }
       if (b) { b.hidden = esSuper; }
+    });
+  }
+
+  // ---- Matriz de Permisos ----
+  var matriz = document.querySelector('form[data-matriz]');
+  if (matriz) {
+    var celdas = matriz.querySelectorAll('select[data-celda]');
+    var estado = matriz.querySelector('[data-matriz-estado]');
+    var textoBase = estado ? estado.innerHTML : '';
+    var pendientes = 0;
+    var pintar = function (s) {
+      var td = s.closest('td');
+      var cambio = s.value !== s.getAttribute('data-inicial');
+      td.classList.toggle('celda-on', s.value !== '');
+      td.classList.toggle('celda-auto', s.value === '' && s.getAttribute('data-super') === '1');
+      td.classList.toggle('celda-cambio', cambio);
+      return cambio;
+    };
+    var contar = function () {
+      pendientes = 0;
+      celdas.forEach(function (s) { if (pintar(s)) { pendientes++; } });
+      if (estado) {
+        estado.innerHTML = pendientes === 0 ? textoBase
+          : '<strong>' + pendientes + (pendientes === 1 ? ' cambio sin guardar' : ' cambios sin guardar') + '.</strong> Guardá para aplicarlos.';
+      }
+    };
+    celdas.forEach(function (s) { s.addEventListener('change', contar); });
+    var enviando = false;
+    matriz.addEventListener('submit', function () { enviando = true; });
+    window.addEventListener('beforeunload', function (ev) {
+      if (pendientes > 0 && !enviando) { ev.preventDefault(); ev.returnValue = ''; }
     });
   }
 })();

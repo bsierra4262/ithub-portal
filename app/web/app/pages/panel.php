@@ -27,7 +27,7 @@ if (es_admin($yo)) {
 }
 
 vista('panel', [
-    'titulo'     => 'Panel',
+    'titulo'     => 'Inicio',
     'yo'         => $yo,
     'apps'       => $apps,
     'categorias' => $categorias,

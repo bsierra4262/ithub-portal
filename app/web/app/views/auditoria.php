@@ -23,6 +23,7 @@ $detalle = static function (?string $json): string {
 ?>
 <div class="cab">
   <div>
+    <span class="eyebrow">Administración</span>
     <h1>Auditoría</h1>
     <p class="cab-sub">Ingresos, salidas, entradas a cada aplicación y cambios de usuarios, permisos y aplicaciones.</p>
   </div>

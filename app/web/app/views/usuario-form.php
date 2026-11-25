@@ -8,16 +8,21 @@ $soyYo = !$nuevo && (int)$usuario['id'] === $yo['id'];
 ?>
 <div class="cab">
   <div>
-    <a class="volver" href="<?= e(url('usuarios')) ?>">← Usuarios</a>
+    <a class="volver" href="<?= e(url('usuarios')) ?>"><?= icono('flecha', 'ico ico-volver') ?> Usuarios</a>
     <h1><?= $nuevo ? 'Nuevo usuario' : e($usuario['nombre']) ?></h1>
     <?php if (!$nuevo): ?><p class="cab-sub"><?= e($usuario['email']) ?> · alta <?= e(fecha_legible($usuario['creado_en'], false)) ?> · último ingreso <?= e(hace($usuario['ultimo_acceso'])) ?></p><?php endif; ?>
   </div>
+  <div class="btn-fila">
+  <?php if (!$nuevo): ?>
+    <a class="btn btn-sec" href="<?= e(url('vista-previa', ['usuario' => $usuario['id']])) ?>"><?= icono('ojo') ?> Ver su panel</a>
+  <?php endif; ?>
   <?php if (!$nuevo && $sesiones_abiertas > 0 && !$soyYo): ?>
   <form method="post" action="<?= e(url('sesion-cerrar')) ?>" data-confirmar="¿Cerrar las <?= $sesiones_abiertas ?> sesiones abiertas de <?= e($usuario['nombre']) ?>? Se cierran también en las aplicaciones.">
     <?= csrf_campo() ?><input type="hidden" name="usuario" value="<?= (int)$usuario['id'] ?>"><input type="hidden" name="volver" value="sesiones">
     <button class="btn btn-sec" type="submit"><?= icono('salir') ?> Cerrar sus sesiones (<?= $sesiones_abiertas ?>)</button>
   </form>
   <?php endif; ?>
+</div>
 </div>
 
 <form method="post" action="<?= e(url('usuario-guardar')) ?>" class="form" novalidate>

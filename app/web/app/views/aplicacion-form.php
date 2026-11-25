@@ -6,7 +6,7 @@ $cls = static fn(string $k): string => isset($errores[$k]) ? ' con-error' : '';
 ?>
 <div class="cab">
   <div>
-    <a class="volver" href="<?= e(url('aplicaciones')) ?>">← Aplicaciones</a>
+    <a class="volver" href="<?= e(url('aplicaciones')) ?>"><?= icono('flecha', 'ico ico-volver') ?> Aplicaciones</a>
     <h1><?= $nueva ? 'Nueva aplicación' : e($app['nombre']) ?></h1>
     <?php if (!$nueva): ?><p class="cab-sub">client_id <code><?= e($app['clave']) ?></code> · <?= $app['sso'] ? 'conectada al ingreso único' : 'sin ingreso único todavía' ?></p><?php endif; ?>
   </div>

@@ -92,7 +92,7 @@ if (PHP_SAPI !== 'cli') {
     header('X-Frame-Options: DENY');
     header('Referrer-Policy: strict-origin-when-cross-origin');
     header("Content-Security-Policy: default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; "
-        . "style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; "
+        . "style-src 'self'; font-src 'self'; "
         . "script-src 'self'; frame-ancestors 'none'; base-uri 'self'");
     if (es_https()) {
         header('Strict-Transport-Security: max-age=31536000');

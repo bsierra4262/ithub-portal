@@ -3,6 +3,7 @@
 ?>
 <div class="cab">
   <div>
+    <span class="eyebrow">Tu perfil</span>
     <h1>Mi cuenta</h1>
     <p class="cab-sub">Tus datos vienen de Google Workspace: el nombre y la foto se actualizan solos cada vez que entrás.</p>
   </div>

@@ -47,7 +47,8 @@ const ICONOS_UI = [
     'check'     => '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
     'alerta'    => '<path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.5h.01"/>',
     'editar'    => '<path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-4-4L4 16z"/><path d="M14 6l4 4"/>',
-    'inicio'    => '<path d="M3.5 11L12 3.5l8.5 7.5"/><path d="M5.5 9.5v11h13v-11"/>',
+    'ojo'       => '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+    'inicio'    =>'<path d="M3.5 11L12 3.5l8.5 7.5"/><path d="M5.5 9.5v11h13v-11"/>',
 ];
 
 /**

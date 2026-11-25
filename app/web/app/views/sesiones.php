@@ -3,6 +3,7 @@
 ?>
 <div class="cab">
   <div>
+    <span class="eyebrow">Administración</span>
     <h1>Sesiones</h1>
     <p class="cab-sub">Sesiones abiertas de ITHub. Cerrar una la cierra también en todas las aplicaciones a las que se entró con ella.</p>
   </div>

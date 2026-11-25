@@ -3,6 +3,7 @@
 ?>
 <div class="cab">
   <div>
+    <span class="eyebrow">Configuración</span>
     <h1>Aplicaciones</h1>
     <p class="cab-sub">Las tarjetas del panel y su conexión al ingreso único. Una app sin ingreso único igual se abre desde el panel, pero pide su propio login.</p>
   </div>
