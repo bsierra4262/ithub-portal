@@ -1,0 +1,5 @@
+# ============================================================
+#  Carpeta app/: código de la aplicación (bootstrap, módulos, pages, views).
+# ============================================================
+# El código NO se sirve por HTTP: sólo lo incluye index.php.
+Require all denied

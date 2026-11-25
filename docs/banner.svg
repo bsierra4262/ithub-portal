@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-label="ITHub — Todas las aplicaciones de Intellihelp, una sola sesión">
+  <rect width="1280" height="320" fill="#663399"/>
+  <circle cx="1180" cy="330" r="230" fill="#522980"/>
+  <circle cx="60" cy="-20" r="140" fill="#3d1f5c" opacity="0.7"/>
+
+  <!-- Mosaico de aplicaciones -->
+  <g transform="translate(96,72)">
+    <g fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2">
+      <rect x="0" y="0" width="76" height="76" rx="18"/>
+      <rect x="92" y="0" width="76" height="76" rx="18" fill="#fffade" fill-opacity="0.2"/>
+      <rect x="0" y="92" width="76" height="76" rx="18" fill="#fffade" fill-opacity="0.2"/>
+      <rect x="92" y="92" width="76" height="76" rx="18"/>
+    </g>
+    <g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- factura -->
+      <path d="M24 16h28v44l-7-5-7 5-7-5-7 5z"/><path d="M31 28h14M31 37h14M31 46h8"/>
+      <!-- clientes -->
+      <circle cx="122" cy="30" r="8"/><path d="M106 58c1.5-9 8-13 16-13s14.5 4 16 13"/><circle cx="141" cy="32" r="5.5"/>
+      <!-- caja -->
+      <path d="M38 106l18 10v20l-18 10-18-10v-20z"/><path d="M20 116l18 10 18-10M38 126v20"/>
+      <!-- libro -->
+      <path d="M108 110h12a6 6 0 0 1 6 6v28a5 5 0 0 0-5-5h-13z"/><path d="M144 110h-12a6 6 0 0 0-6 6v28a5 5 0 0 1 5-5h13z"/>
+    </g>
+  </g>
+
+  <text x="330" y="150" font-family="Saira, Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="500" fill="#ffffff" letter-spacing="-2">IT<tspan font-weight="700" fill="#fffade">Hub</tspan></text>
+  <text x="334" y="204" font-family="Saira, Segoe UI, Helvetica, Arial, sans-serif" font-size="30" font-weight="500" fill="#efe6f5">Todas las aplicaciones de Intellihelp. Una sola sesi&#243;n.</text>
+  <rect x="334" y="232" width="120" height="6" rx="3" fill="#fffade"/>
+  <text x="334" y="276" font-family="Saira, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#d8c8e6">Google Workspace &#183; OpenID Connect &#183; permisos por aplicaci&#243;n</text>
+</svg>
