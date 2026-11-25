@@ -1,0 +1,49 @@
+# ============================================================
+#  .gitignore — ITHub
+#  Solo se versiona: app/ (código), bin/, test/, md/, docs/.
+#  NUNCA se versiona: configuración real, claves de firma ni bases locales.
+# ============================================================
+
+# --- Ignorar TODO el root por defecto... ---
+/*
+
+# --- ...menos lo que sí queremos versionar: ---
+!/.gitignore
+!/.gitattributes
+!/.editorconfig
+!/README.md
+!/LICENSE
+!/CHANGELOG.md
+!/CONTRIBUTING.md
+!/SECURITY.md
+!/INSTALL.md
+!/app/
+!/bin/
+!/test/
+!/md/
+!/docs/
+
+# --- Secretos reales (aunque estén dentro de app/): NUNCA subir ---
+app/server-config/config.php
+app/server-config/*.pem
+app/web/config.local.php
+bin/deploy.local.json
+bin/deploy.known_hosts
+*.pem
+*.key
+/.env
+
+# --- Base local de desarrollo (SQLite) ---
+*.sqlite
+*.sqlite3
+
+# --- Basura / temporales ---
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+__pycache__/
+node_modules/
+
+# --- Datos de desarrollo local ---
+/.local/
