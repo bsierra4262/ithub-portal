@@ -4,6 +4,12 @@ Todos los cambios notables de este proyecto se documentan acá.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/)
 y el versionado, [SemVer](https://semver.org/lang/es/).
 
+## 2026-11-25 · 0.2.2 · Login directo sin app pendiente
+
+- «Para entrar a <app>…» sólo aparece cuando se llega al login desde una app (`/login?app=`).
+  Abrir `ithub.intellihelp.tech/login` por cuenta propia descarta cualquier pedido viejo que
+  hubiera quedado en el navegador, y al ingresar se va al panel.
+
 ## 2026-11-25 · 0.2.1 · Salir vuelve a ITHub
 
 - Salir desde cualquier app conectada cierra la sesión única y deja siempre en el login de

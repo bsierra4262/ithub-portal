@@ -4,7 +4,17 @@ declare(strict_types=1);
 // ============================================================
 //  Pantalla de ingreso. Un solo botón: Google Workspace.
 //  Si ya hay sesión, sigue de largo (a lo pendiente o al panel).
+//  «Para entrar a <app>» sólo se muestra si se llegó desde una app (?app=).
 // ============================================================
+
+// El pedido de una app (/oauth/authorize sin sesión) llega con ?app=<clave>.
+// Quien abre /login por su cuenta (o vuelve de salir) va al panel: se descarta
+// cualquier pedido viejo que haya quedado en la sesión del navegador, así no
+// aparece «Para entrar a CRM» ni se termina en esa app. Con ?error= se
+// conserva, porque es la vuelta de un intento fallido del mismo pedido.
+if (!isset($_GET['app']) && !isset($_GET['error'])) {
+    unset($_SESSION['oidc_pendiente'], $_SESSION['oidc_pendiente_app']);
+}
 
 if (usuario_actual() !== null) {
     redirigir(destino_post_login());
