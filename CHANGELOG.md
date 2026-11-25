@@ -1,0 +1,30 @@
+# Changelog
+
+Todos los cambios notables de este proyecto se documentan acá.
+El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/)
+y el versionado, [SemVer](https://semver.org/lang/es/).
+
+## 2026-11-25 · 0.1.0 · Portal y proveedor de identidad
+
+Primera versión de ITHub como portal único de Intellihelp (etapa 1).
+
+- **Login sólo con Google Workspace** (Authorization Code + PKCE, server-side). Se valida el
+  `hd` y el dominio exacto del email en el `id_token`; sin contraseñas.
+- **Sesión única** guardada en la base (`sesiones`): inactividad y duración máxima, cierre
+  desde el panel, cierre de todas las sesiones propias.
+- **Panel** con una tarjeta por aplicación, rol de la persona en cada una, filtros por
+  categoría y buscador. Resumen del día para administradores.
+- **Usuarios** con rol en ITHub (super admin, administrador, usuario) y **matriz de permisos
+  por aplicación**. Reglas: nadie se desactiva ni se cambia el rol a sí mismo, siempre queda
+  un super admin, desactivar cierra todas las sesiones, quitar una app cierra la sesión en esa app.
+- **Catálogo de aplicaciones** editable: tarjeta, categoría, orden, estado (activa,
+  mantenimiento, próximamente), roles y datos de OpenID Connect. Secreto generado una sola vez
+  y guardado como SHA-256.
+- **Proveedor OpenID Connect**: discovery, authorize, token, userinfo, jwks, logout
+  (RP-initiated) y **back-channel logout** a las apps. `id_token` RS256 con el claim `rol` de
+  la app.
+- **Auditoría** de ingresos, salidas, entradas a cada app, cambios de usuarios, permisos y
+  aplicaciones, con filtros y paginado.
+- Catálogo inicial con las 11 aplicaciones de Intellihelp.
+- 45 tests sobre SQLite en memoria; flujo completo probado por HTTP y firma verificada con
+  `openssl`.
